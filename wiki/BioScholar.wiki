@@ -1,0 +1,20 @@
+#summary Overview of the BioScholar Project
+
+= Introduction =
+
+The goal of the BioScholar project is to provide software for experimental biomedical scientists that would permit a single scientific worker (at the level of a graduate student or postdoctoral worker) to design, construct and manage a shared knowledge repository for a research group derived from a local store of PDF files.  In addition, the project aims to support the curation of data from scientific experiments conducted within such a research group.   We especially emphasize usability within a laboratory so that this software could provide support to experimental scientists attempting to construct a personalized representation of their own knowledge on a medium scale.
+
+= Details =
+
+The BioScholar project has several components that together form the entire application.  These components include
+
+  * The KEfED Editor for creating experimental designs, generating data forms and collecting data.
+  * A DigitalLibrary component for managing a library of PDF files.
+  * A NaturalLanguageProcessing component for the markup and extraction of  information from PDF documents
+  * Multiple interpretive models that provide domain specific reasoning based on experimental data.
+    * NeuralConnectivity provides a model of the connections between brain regions in the hypothalamus that is based on data from TractTracing experiments.
+    * Other interpretive models to be added later.
+
+= Support =
+
+The BioScholar project is funded by NIGMS: RO1-GM083871 from the [http://www.nih.gov National Institutes of Health].
