@@ -22,7 +22,7 @@ We currently have one release package, which contains `*.war` files for the KEfE
 
 The KEfED Editor is based on an [http://www.Adobe.com/Flex Adobe Flex] client.  This requires a web browser with the [http://www.adobe.com/products/flashplayer/  Adobe Flash] player, version 9 or greater.
 
-The server requires a web server such as [Apache Tomcat] or [Jetty] that can deploy `*.war` files.  The content of the war files effectively requires the use of Java for proper operation.
+The server requires a web server such as [http://tomcat.apache.org/ Apache Tomcat] or [http://sourceforge.net/projects/jetty Jetty] that can deploy `*.war` files.  The content of the war files effectively requires the use of Java for proper operation.
 
 = External Components =
 
