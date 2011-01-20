@@ -28,4 +28,4 @@ The server requires a web server such as [http://tomcat.apache.org/ Apache Tomca
 
 We use the following external libraries in the KEfED Editor.
   * The [http://lab.kapit.fr/display/diagrammer/Diagrammer Kapit Diagrammer] graphic library from [http://lab.kapit.fr/ KapLab] under their [http://lab.kapit.fr/display/Store/Free+License Community License].
-  * The [http://flare.prefuse.org/ Prefuse Flare] graph manipulation and visualization library from the [http://vis.berkeley.edu/ UC Berkeley Visualization Lab] under the [http://flare.prefuse.org/license-flare.txt BSD License|]
+  * The [http://flare.prefuse.org/ Prefuse Flare] graph manipulation and visualization library from the [http://vis.berkeley.edu/ UC Berkeley Visualization Lab] under the [http://flare.prefuse.org/license-flare.txt BSD License]
