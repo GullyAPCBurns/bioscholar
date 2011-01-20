@@ -1,0 +1,7 @@
+#summary PowerLoom Introduction
+
+= Introduction =
+
+PowerLoom is a first-order logic reasoning system developed at the University of Southern California's Information Sciences Institute.  See the [http://www.isi.edu./isd/LOOM/PowerLoom main PowerLoom page] for more details.
+
+PowerLoom is used in the BioScholar project to provide reasoning services for building interpretive models that are grounded in experimental data.
