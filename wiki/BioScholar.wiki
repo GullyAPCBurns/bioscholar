@@ -8,7 +8,7 @@ The goal of the BioScholar project is to provide software for experimental biome
 
 The BioScholar project has several components that together form the entire application.  These components include
 
-  * The KEfED Editor for creating experimental designs, generating data forms and collecting data.
+  * The [KEfED Editor] for creating experimental designs, generating data forms and collecting data.
   * A DigitalLibrary component for managing a library of PDF files.
   * A NaturalLanguageProcessing component for the markup and extraction of  information from PDF documents
   * Multiple interpretive models that provide domain specific reasoning based on experimental data.
