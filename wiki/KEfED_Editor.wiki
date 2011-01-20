@@ -1,0 +1,31 @@
+#summary Description of the KEfED Editor
+
+= Introduction =
+
+The KEfED Editor is a software component to aid in the design of experimental protocols, with an emphasis o n the data flow.  That provides an organizing principle that we exploit for constructing a data management tool.
+
+The KEfED model is work is designed to provide a lightweight representation for scientific knowledge that is (a) generalizable, (b) a suitable target for text-mining approaches, (c) relatively semantically simple, and (d) is based on the way that scientist plan experiments and should therefore be intuitively understandable to non-computational bench scientists.
+
+= Implementation =
+
+We have a preliminary implementation of this component.  This is deployed as a rich internet application based on a web server.  It includes the following parts.
+  * The KEfED editor itself, a flash-based graphical user interface that allows the creation of KEfED models of experimental designs, the generation of data entry forms for adding data based on those designs and the entry of data.
+  * A backend storage system for storing experimental designs and also for storing the data associated with those designs.  Currently this is handled by a [http://www.persvr.org/ Persevere DB] but this will change to a different technology in a subsequent release.
+  * A reasoning engine based on PowerLoom with an implementation of reasoning for NeuralConnectivity based on TractTracing data.
+  * A variety of export formats will be supported.  Currently we have an ability to export to PowerLoom and have an OWL exporter under development.
+
+= Releases =
+
+We currently have one release package, which contains `*.war` files for the KEfED editor, persevere database and NeuralConnectivity reasoner.  See the "Downloads" link.
+
+= System Requirements =
+
+The KEfED Editor is based on an [http://www.Adobe.com/Flex Adobe Flex] client.  This requires a web browser with the [http://www.adobe.com/products/flashplayer/  Adobe Flash] player, version 9 or greater.
+
+The server requires a web server such as [Apache Tomcat] or [Jetty] that can deploy `*.war` files.  The content of the war files effectively requires the use of Java for proper operation.
+
+= External Components =
+
+We use the following external libraries in the KEfED Editor.
+  * The [http://lab.kapit.fr/display/diagrammer/Diagrammer Kapit Diagrammer] graphic library from [http://lab.kapit.fr/ KapLab] under their [http://lab.kapit.fr/display/Store/Free+License Community License].
+  * The [http://flare.prefuse.org/ Prefuse Flare] graph manipulation and visualization library from the [http://vis.berkeley.edu/ UC Berkeley Visualization Lab] under the [http://flare.prefuse.org/license-flare.txt BSD License|]
