@@ -8,7 +8,7 @@ The KEfED model is work is designed to provide a lightweight representation for 
 
 = Implementation =
 
-We have a preliminary implementation of this component.  This is deployed as a rich internet application based on a web server.  It includes the following parts.
+We have the initial implementation of this component.  This is deployed as a rich internet application based on a web server.  It includes the following parts.
   * The KEfED editor itself, a flash-based graphical user interface that allows the creation of KEfED models of experimental designs, the generation of data entry forms for adding data based on those designs and the entry of data.
   * A backend storage system for storing experimental designs and also for storing the data associated with those designs.  Currently this is handled by a [http://www.persvr.org/ Persevere DB] but this will change to a different technology in a subsequent release.
   * A reasoning engine based on PowerLoom with an implementation of reasoning for NeuralConnectivity based on TractTracing data.
