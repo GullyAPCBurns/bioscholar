@@ -26,7 +26,9 @@ See the "Downloads" link.
 
 The KEfED Editor is based on an [http://www.Adobe.com/Flex Adobe Flex] client.  This requires a web browser with the [http://www.adobe.com/products/flashplayer/  Adobe Flash] player, version 10 or greater.
 
-The server requires a web server such as [http://tomcat.apache.org/ Apache Tomcat] or [http://sourceforge.net/projects/jetty Jetty] that can deploy `*.war` files.  The content of the war files effectively requires the use of Java for proper operation.
+The standalone server requires a Java 1.6 implementation.
+
+The existing server files require a web server such as [http://tomcat.apache.org/ Apache Tomcat] or [http://sourceforge.net/projects/jetty Jetty] that can deploy `*.war` files.  The content of the war files effectively requires the use of Java for proper operation.
 
 = External Components =
 
