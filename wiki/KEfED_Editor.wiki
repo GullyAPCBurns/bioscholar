@@ -17,8 +17,10 @@ We have a preliminary implementation of this component.  This is deployed as a r
 = Releases =
 
 We currently have two release packages.
-* One is a fully self-contained application server, based on Jetty.  This is available as a set of three platform specific installers.  Each one will install a full self-contained server.
-* The second is a set of `*.war` files for the KEfED editor, persevere database and NeuralConnectivity reasoner.  These are suitable for use in an existing web server such as Tomcat or Jetty.
+ * One is a fully self-contained application server, based on Jetty.  This is available as a set of three platform specific installers.  Each one will install a full self-contained server.
+ * The second is a set of `*.war` files for the KEfED editor, persevere database and NeuralConnectivity reasoner.
+
+These are suitable for use in an existing web server such as Tomcat or Jetty.
  
 See the "Downloads" link.
 
