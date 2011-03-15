@@ -22,7 +22,7 @@ We currently have two release packages.
 
 These are suitable for use in an existing web server such as Tomcat or Jetty.
  
-See the "Downloads" link.
+See the [https://code.google.com/p/bioscholar/downloads/list Downloads] link.
 
 = System Requirements =
 
