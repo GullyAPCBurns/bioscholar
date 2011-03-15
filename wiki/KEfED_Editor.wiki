@@ -16,11 +16,15 @@ We have a preliminary implementation of this component.  This is deployed as a r
 
 = Releases =
 
-We currently have one release package, which contains `*.war` files for the KEfED editor, persevere database and NeuralConnectivity reasoner.  See the "Downloads" link.
+We currently have two release packages.
+* One is a fully self-contained application server, based on Jetty.  This is available as a set of three platform specific installers.  Each one will install a full self-contained server.
+* The second is a set of `*.war` files for the KEfED editor, persevere database and NeuralConnectivity reasoner.  These are suitable for use in an existing web server such as Tomcat or Jetty.
+ 
+See the "Downloads" link.
 
 = System Requirements =
 
-The KEfED Editor is based on an [http://www.Adobe.com/Flex Adobe Flex] client.  This requires a web browser with the [http://www.adobe.com/products/flashplayer/  Adobe Flash] player, version 9 or greater.
+The KEfED Editor is based on an [http://www.Adobe.com/Flex Adobe Flex] client.  This requires a web browser with the [http://www.adobe.com/products/flashplayer/  Adobe Flash] player, version 10 or greater.
 
 The server requires a web server such as [http://tomcat.apache.org/ Apache Tomcat] or [http://sourceforge.net/projects/jetty Jetty] that can deploy `*.war` files.  The content of the war files effectively requires the use of Java for proper operation.
 
@@ -29,3 +33,6 @@ The server requires a web server such as [http://tomcat.apache.org/ Apache Tomca
 We use the following external libraries in the KEfED Editor.
   * The [http://lab.kapit.fr/display/diagrammer/Diagrammer Kapit Diagrammer] graphic library from [http://lab.kapit.fr/ KapLab] under their [http://lab.kapit.fr/display/Store/Free+License Community License].
   * The [http://flare.prefuse.org/ Prefuse Flare] graph manipulation and visualization library from the [http://vis.berkeley.edu/ UC Berkeley Visualization Lab] under the [http://flare.prefuse.org/license-flare.txt BSD License]
+
+We use the following external code in the BioScholar server:
+ * The [http://jetty.codehaus.org/jetty/ Jetty] web server, licensed under the [http://www.eclipse.org/jetty/licenses.php Apache license].
