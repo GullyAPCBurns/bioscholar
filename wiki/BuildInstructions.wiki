@@ -1,0 +1,15 @@
+#summary One-sentence summary of this page.
+
+= Build Instructions =
+
+== The editor subsystem ==
+
+The editor subsystem builds an Adobe Flash based interface.  The code is compiled using the [http://opensource.adobe.com/wiki/display/flexsdk/Download+Flex+3 Flex 3.5 SDK], which must be installed.
+
+== The reasoning subsystem ==
+
+== The server subsystem ==
+
+== Persevere configuration ==
+
+The Persevere system will require only minimal configuration.  It will be necessary to create tables in persevere to handle and store the KEfED model designs and data.  By default these tables are called {{{KefedModel}}} and {{{KefedExperiment}}}, but other names can be used.  If other names are used, then the configuration file for the editor subsystem will need to be modified to reflect the differences.
