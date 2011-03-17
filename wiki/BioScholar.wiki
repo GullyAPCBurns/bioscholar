@@ -23,7 +23,7 @@ We provide software distributions in three forms:
 == System Requirements ==
 
   * *Standalone Server:*  The standalone server code requires Java 1.6 or higher to run.  We recommend a machine with 1GB or RAM or more.
-  * *War Files:* The war file code requires the use of an existing web server that is able to deploy {{{*.war}}} files.  Some examples are Jetty and Tomcat.
+  * *War Files:* The war file code requires the use of an existing web server that is able to deploy {{{*.war}}} files.  Some examples are [http://jetty.codehaus.org/jetty/ Jetty] and [Tomcat].
   * *Client:*  The client requires a web browser with Adobe(R) Flash(R) version 10 or higher.
 
 == Acknowledgements ==
