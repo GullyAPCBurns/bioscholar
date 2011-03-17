@@ -3,7 +3,7 @@
 = Installation Instructions =
 
 There are three distributions of the !BioScholar code.
- # A stand-alone web server using Jetty.
+  # A stand-alone web server using Jetty.
   # A set of {{{*.war}}} files suitable for installation in an existing web server.
   # Source code.
 Installation instructions for each option are given below.
@@ -18,10 +18,11 @@ This is the simplest installation.  We provide installers for MacOS, Windows and
 
   * *Windows:* The download is a runnable installer application.  Double-clicking on the file will launch the installer.  There may be a dialog indicating an "unknown publisher".  This is expected and should not cause alarm.  You can continue the installation.
 
-  * *Linux, Unix, other:* The download is a jar file.  Running this jar file, either by double-clicking it (if supported by your operating system) or invoking it with {{{
-           java -jar install-BioScholarServer-1.0.jar
+  * *Linux, Unix, other:* The download is a jar file.  Install the software by running this jar file.  Run the file  either by double-clicking it (if supported by your operating system) or starting it  with
+{{{
+        java -jar install-BioScholarServer-1.0.jar
 }}}
-will install the software.
+
 
 === Running the Server ===
 
