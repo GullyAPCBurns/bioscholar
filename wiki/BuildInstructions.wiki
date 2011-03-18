@@ -2,6 +2,8 @@
 
 = Build Instructions =
 
+Instructions for building !BioScholar from source code.
+
 The source code is divided into three sections.
   * *editor* This is the main !BioScholar application code.  It runs the interface and communicates with the external resources.  Generates the code which goes into the {{{blazeds.war}}} file
   * *reasoning* This is the specialized !PowerLoom code that performs the reasoning task to interpret tract-tracing experiments.  Includes the knowledge bases (KBs) for the reasoning part of the system.  Generates the code which goes into the {{{ploom.war}}} file.
