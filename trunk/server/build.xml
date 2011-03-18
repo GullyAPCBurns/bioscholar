@@ -356,7 +356,9 @@ java -Xmx${MAX_HEAP}m -jar ${APP_JAR_NAME}.jar
 	<jarfilelist dir="${INSTALLER_DIR}" files="install-${APP_JAR_NAME}.jar"/>
       </jarbundler>
       <!-- A .dmg would be better, but this is more portable. -->
-      <zip basedir="${INSTALLER_DIR}/Install${APP}-${VERSION}.app" destfile="${INSTALLER_DIR}/Install${APP}-${VERSION}-Mac.zip"/>
+      <zip destfile="${INSTALLER_DIR}/Install${APP}-${VERSION}-Mac.zip">
+	<zipfileset dir="${INSTALLER_DIR}/Install${APP}-${VERSION}.app" prefix="Install${APP}-${VERSION}.app"/>
+      </zip>
 
       <!-- Windows native installer -->
       <echo message="Building Windows Native Installer"/>
