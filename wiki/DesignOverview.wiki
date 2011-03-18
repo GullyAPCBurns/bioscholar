@@ -20,7 +20,7 @@ http://bioscholar.googlecode.com/svn/wiki/images/kefed-block-diagram.png
 
 == Additional Tools ==
 
-Additional tools are used by BioScholar to build and package the releases.  Those tools are:
+Additional tools are used by !BioScholar to build and package the releases.  Those tools are:
   *  [http://opensource.adobe.com/wiki/display/flexsdk/Download+Flex+3 Adobe Flex 3.5 SDK] used to compile the main Flex interface for BioScholar.
   * [http://launch4j.sourceforge.net/ Launch4J] to build windows executables.
   * [http://informagen.com/JarBundler/ JarBundler] to build MacOS executables.
