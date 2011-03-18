@@ -1,0 +1,18 @@
+#summary One-sentence summary of this page.
+
+= !BioScholar Design =
+
+!BioScholar is designed using a client-server architecture.  User interaction is via a graphical interface running in a web browser using Adobe Flash.  This interface communicates with a web server that also provides access to backend storage, a reasoning engine, an ontology search service and the[PubMed] publication database.
+
+
+
+== External Components ==
+
+  # [http://www.persvr.org/Page/Persevere Persevere storage engine].  Used to store experiment designs and data.
+  # [http://www.isi.edu/isd/LOOM/PowerLoom/ PowerLoom reasoning engine].  Used to support specific interpretations of data.  This requires a customized interface and domain model.
+  # [http://bioportal.bioontology.org/ NCBO BioPortal]. Used for looking up ontology terms for annotation of experimental design model elements.
+  # [http://www.ncbi.nlm.nih.gov/pubmed/ PubMed].  Used to provide access to publication information and abstracts from the interpretation of data in specialized interfaces.
+  # [http://lab.kapit.fr/display/kalileo/Diagrammer+v1+Developer+Guide Kapit Diagrammer].  Provides the graphical library for drawing and interacting with experimental designs.
+  # [http://flare.prefuse.org/ Prefuse Flare]. Graph library for analyzing the experimental design graphs to compute variable dependencies.
+  #[http://jetty.codehaus.org/jetty/  Jetty Web Server]. Provides the embedded stand alone web server for the !BioScholar server.
+  # [http://www.jgoodies.com/freeware/forms/ JGoodies Forms]. Layout of the stand alone server interface.
