@@ -48,3 +48,10 @@ You will need to configure Jetty to scan a directory for the {{{*.war}}} files a
 == Source Code ==
 
 The source code can be downloaded from the source code repository.  There are three systems for which we provide code.   A full build will also require the installation of a [http://www.persvr.org/Page/Persevere Persevere server].  We provide [http://ant.apache.org/ ant] scripts to automate the building of the system.  Once the source code is installed, see the BuildInstructions.  Building the system will require additional software and development kits to be installed.
+
+The source code is divided into three sections.
+  * *server* This is the stand alone server code that uses the Jetty web server.
+  * *editor* This is the main !BioScholar application code.  It runs the interface and communicates with the external resources.  Generates the code which goes into the {{{blazeds.war}}} file
+  * *reasoning* This is the specialized !PowerLoom code that performs the reasoning task to interpret tract-tracing experiments.  Includes the knowledge bases (KBs) for the reasoning part of the system.  Generates the code which goes into the {{{ploom.war}}} file.
+
+The {{{persevere.war}}} file is provided as part of the war file distribution and is not built from source.
