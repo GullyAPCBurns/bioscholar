@@ -2,9 +2,9 @@
 
 = !BioScholar Design =
 
-!BioScholar is designed using a client-server architecture.  User interaction is via a graphical interface running in a web browser using Adobe Flash.  This interface communicates with a web server that also provides access to backend storage, a reasoning engine, an ontology search service and the[PubMed] publication database.
+!BioScholar is designed using a client-server architecture.  User interaction is via a graphical interface running in a web browser using Adobe Flash.  This interface communicates with a web server that also provides access to backend storage, a reasoning engine, an ontology search service and the !PubMed publication database.
 
-
+http://bioscholar.googlecode.com/svn/wiki/images/kefed-block-diagram.png
 
 == External Components ==
 
