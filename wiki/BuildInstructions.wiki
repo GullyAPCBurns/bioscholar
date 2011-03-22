@@ -15,7 +15,9 @@ The source files include {{{ant}}} scripts for compiling and building the code.
 
 Code is in {{{editor}}}
 
-The editor subsystem builds an Adobe Flash based interface.  The code is compiled using the [http://opensource.adobe.com/wiki/display/flexsdk/Download+Flex+3 Flex 3.5 SDK], which must be installed and a system variable named {{{FLEX_HOME}}} be configured to point to that installation location.  
+The editor subsystem builds an Adobe Flash based interface.  The code is compiled using the [http://opensource.adobe.com/wiki/display/flexsdk/Download+Flex+3 Flex 3.5 SDK], which must be installed and a system variable named {{{FLEX_HOME}}} be configured to point to that installation location.
+
+The file {{{configuration-sample.xml}}} must be copied to {{{configuration.xml}}}.  (The {{{configuration.xml}}} file is not being kept under {{{svn}}} control so that any local modifications will not be overwritten when updating the sources.)  
 
 *Requires*: Flex 3.5 SDK, ant
 
