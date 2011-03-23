@@ -70,6 +70,15 @@
       <mkdir dir="${BUILD_DIR}/${CONTEXT_ROOT}/${CONTEXT}"/>
     </target>
     <target name="compile" depends="init">
+      <if>
+	<not> <resourceexists>
+	  <file file="${SRC_DIR}/configuration.xml"/>
+	</resourceexists>
+	</not>
+	<then>
+	  <copy file="${SRC_DIR}/configuration-sample.xml" tofile="${SRC_DIR}/configuration.xml"/>
+	</then>
+      </if>
       <for param="app" list="${APP_LIST}" keepgoing="true">
 	<sequential>
 	  <antcall target="compile-app">
