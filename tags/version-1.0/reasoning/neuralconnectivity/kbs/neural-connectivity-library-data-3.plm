@@ -1,0 +1,47 @@
+;; $Id$
+
+(CL:IN-PACKAGE "STELLA")
+
+(IN-MODULE "NEURAL-CONNECTIVITY-LIBRARY")
+
+(IN-DIALECT :KIF)
+
+;; New journals from BAMS DB.
+
+
+(ASSERT (AND (Reference Cenq2006)
+	     (reference-abbreviation Cenq2006 "Cenq2006")
+	     (reference-text Cenq2006 "Cenquizca & Swanson '06, JCN497:101")
+	     (reference-author Cenq2006 "Cenquizca & Swanson")
+	     (reference-first-author Cenq2006 "cenquizca")
+	     (reference-journal Cenq2006 "Journal of Comparitive Neurology")
+	     (reference-year Cenq2006 2006)
+	     (reference-volume Cenq2006 "497")
+	     (reference-page Cenq2006 "101")
+	     (reference-digital-library-id Cenq2006 "cenquizca-2006-497-101")
+	     (reference-pmid Cenq2006 "16680763")
+	     (reference-pmcid Cenq2006 "PMC2570652")))
+
+(ASSERT (AND (Reference Shib93a)
+	     (reference-abbreviation Shib93a "Shib93a")
+	     (reference-text Shib92 "Shibata '93, JCN330:533")
+             (reference-author Shib93a "Shibata")
+             (reference-first-author Shib93a "shibata")
+             (reference-journal Shib93a "Journal of Comparitive Neurology")
+             (reference-year Shib93a 1993)
+             (reference-volume Shib93a "330")
+             (reference-page Shib93a "533")
+             (reference-digital-library-id Shib93a "shibata-1993-330-533")))
+
+(ASSERT (AND (Reference Shib93b)
+	     (reference-abbreviation Shib93b "Shib93b")
+	     (reference-text Shib92 "Shibata '93, JCN337:431")
+             (reference-author Shib93b "Shibata")
+             (reference-first-author Shib93b "shibata")
+             (reference-journal Shib93b "Journal of Comparitive Neurology")
+             (reference-year Shib93b 1993)
+             (reference-volume Shib93b "337")
+             (reference-page Shib93b "431")
+             (reference-digital-library-id Shib93b "shibata-1993-337-431")))
+
+
