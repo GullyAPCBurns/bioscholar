@@ -155,16 +155,6 @@
 		                         (5FF4DB53-C895-82F1-EF38-F41AA0F89A7A ?injection ?injection-site)
  		                         
  		                         (BOUND-VARIABLES ?injection-site ?label-site)
- 		                         (OR (AND (AnterogradeTractTracingDatum ?datum)
- 		                         		  (OR (/PART/PROPER-PART-OF ?injection-site (brain-region-for ?source))
- 		                         		      (/PART/OVERLAPS ?injection-site (brain-region-for ?source)))
- 		                         		  (OR (/PART/PROPER-PART-OF ?label-site (brain-region-for ?target))
- 		                         		      (/PART/OVERLAPS ?label-site (brain-region-for ?target))))
- 		                         	 (AND (RetrogradeTractTracingDatum ?datum)
- 		                         		  (OR (/PART/PROPER-PART-OF ?injection-site (brain-region-for ?target))
- 		                         		      (/PART/OVERLAPS ?injection-site (brain-region-for ?target)))
- 		                         		  (OR (/PART/PROPER-PART-OF ?label-site (brain-region-for ?source))
- 		                         		      (/PART/OVERLAPS ?label-site (brain-region-for ?source)))))
  		                         (QUERY (AND 
  		                            (COLLECT-INTO-SET (SETOFALL ?x (/PART/OVERLAPS ?injection-site (brain-region-for ?x))) ?injection-overlaps)
  		                            (COLLECT-INTO-SET (SETOFALL ?x (/PART/PROPER-PART-OF ?injection-site (brain-region-for ?x))) ?injection-part-of)
