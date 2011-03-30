@@ -107,10 +107,7 @@ For more background on the RCC5, consult
 (defrelation /part/proper-part-of ((?x /part/geometric-region) (?y /part/geometric-region))
   :documentation "PROPER-PART-OF: Proper Part Inverse.  ?x is the proper part of ?y"
 ;;  :axioms (and (antisymmetric /part/proper-part-of) (transitive /part/proper-part-of))
-  :<= (exists (?z) (and (query (/part/proper-part-of ?x ?z) :inference-level :assertion)
-			(bound-variables ?x ?z)
-			(/part/proper-part-of ?z ?y)))
-  :<= (exists (?z) (and (query (/part/direct-part-of ?x ?z) :inference-level :assertion)
+  :<= (exists (?z) (and (query (/part/proper-part-of ?x ?z) :how-many :all :inference-level :subsumption)
 			(bound-variables ?x ?z)
 			(/part/proper-part-of ?z ?y)))
 ;;   :=>> (and (not (/part/discrete ?x ?y))
