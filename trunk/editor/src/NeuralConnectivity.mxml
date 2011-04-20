@@ -42,6 +42,9 @@
 			import edu.isi.bmkeg.kefed.ontology.bioportal.NCBOBioPortalInterface;
 		
 			[Bindable]
+			private var demo:Boolean = false;
+
+			[Bindable]
 			public var serverUrl:String;
 			
 			[Bindable]
@@ -128,7 +131,7 @@
 			<mx:AddChild relativeTo="{top}">
 				<connectivity:NeuralConnectivityNavigator label="Dashboard" id="inventory" height="100%" width="100%"
 					modelStore="{modelStore}" dataStore="{dataStore}" schemaStore="{schemaStore}"
-					createAllowed="false" deleteAllowed="false"/>
+					createAllowed="{!demo}" deleteAllowed="{!demo}"/>
 			</mx:AddChild>	
 		</mx:State>
 	
@@ -136,7 +139,7 @@
 			<mx:RemoveChild target="{information}"/>
 			<mx:AddChild relativeTo="{top}">
 				<kefedUI:DesignerComponent label="Design" id="designer" height="100%" width="100%"
-					saveAllowed="true"/>
+					saveAllowed="{!demo}"/>
 			</mx:AddChild>	
 		</mx:State>
 	
@@ -144,7 +147,7 @@
 			<mx:RemoveChild target="{information}"/>
 			<mx:AddChild relativeTo="{top}">
 				<kefedUI:SpreadsheetComponent label="Data" id="spreadsheet" height="100%" width="100%"
-					saveAllowed="true"/>
+					saveAllowed="{!demo}"/>
 			</mx:AddChild>	
 		</mx:State>
 
