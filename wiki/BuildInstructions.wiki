@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary How to build BioScholar from source code.
 
 = Build Instructions =
 
