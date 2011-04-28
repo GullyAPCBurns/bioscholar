@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary Overview of the design and architecture of the BioScholar system.
 
 = !BioScholar Design =
 
