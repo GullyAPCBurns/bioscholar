@@ -357,7 +357,7 @@ java -Xmx${MAX_HEAP}m -jar ${APP_JAR_NAME}.jar
       </jarbundler>
       <!-- A .dmg would be better, but this is more portable. -->
       <zip destfile="${INSTALLER_DIR}/Install${APP}-${VERSION}-Mac.zip">
-	<zipfileset dir="${INSTALLER_DIR}/Install${APP}-${VERSION}.app" prefix="Install${APP}-${VERSION}.app"/>
+	<zipfileset dir="${INSTALLER_DIR}/Install${APP}-${VERSION}.app" prefix="Install${APP}-${VERSION}.app" filemode="755"/>
       </zip>
 
       <!-- Windows native installer -->
