@@ -21,7 +21,7 @@
     <property name="LAUNCH4J_HOME" value="${host.LAUNCH4J_HOME}"/>
     <property name="APP" value="BioScholarServer"/>
     <property name="SHORT_NAME" value="BioScholar"/>
-    <property name="VERSION" value="1.0"/>
+    <property name="VERSION" value="1.0.2"/>
 
     <taskdef resource="net/sf/antcontrib/antlib.xml"
 	     classpath="${basedir}/ant/lib/ant-contrib.jar"/>
@@ -149,30 +149,37 @@ java -Xmx${MAX_HEAP}m -jar ${APP_JAR_NAME}.jar
 
     <target name="dist" depends="app">
       <!-- Stage common files here. -->
-      <copy todir="${DIST_DIR}/common/${WEBAPPS_DIR_NAME}">
+      <copy todir="${DIST_DIR}/common/${WEBAPPS_DIR_NAME}"
+	    preservelastmodified="true">
 	<fileset dir="${WEBAPPS_DIR}" excludes="**/.svn"/>
       </copy>
-      <copy todir="${DIST_DIR}/common/${LICENSE_DIR_NAME}">
+      <copy todir="${DIST_DIR}/common/${LICENSE_DIR_NAME}"
+	    preservelastmodified="true">
 	<fileset dir="${LICENSE_DIR}" excludes="**/.svn"/>
       </copy>
-      <copy todir="${DIST_DIR}/common" file="${basedir}/README.text"/>
+      <copy todir="${DIST_DIR}/common" file="${basedir}/README.text"
+	    preservelastmodified="true"/>
 
       <for param="os" list="${OS_LIST}" keepgoing="true">
 	<sequential>
-	  <copy todir="${DIST_DIR}/@{os}">
+	  <copy todir="${DIST_DIR}/@{os}"
+		preservelastmodified="true">
 	    <fileset dir="${DIST_DIR}/common"/>
 	  </copy>
 	</sequential>
       </for>
 
-      <copy todir="${DIST_DIR}/windows/${LIB_DIR_NAME}">
+      <copy todir="${DIST_DIR}/windows/${LIB_DIR_NAME}"
+	    preservelastmodified="true">
        <fileset dir="${LIB_DIR}" excludes="JavaApplicationStub"/>
       </copy>
 
-      <copy todir="${DIST_DIR}/linux/${LIB_DIR_NAME}">
+      <copy todir="${DIST_DIR}/linux/${LIB_DIR_NAME}"
+	    preservelastmodified="true">
         <fileset dir="${LIB_DIR}" excludes="JavaApplicationStub"/>
       </copy>
-      <copy todir="${DIST_DIR}/linux" file="${BUILD_DIR}/${APP_JAR_NAME}.jar"/>
+      <copy todir="${DIST_DIR}/linux" file="${BUILD_DIR}/${APP_JAR_NAME}.jar"
+	    preservelastmodified="true"/>
 
     </target>
 

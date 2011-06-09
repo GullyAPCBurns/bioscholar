@@ -277,7 +277,7 @@ package edu.isi.bmkeg.utils.powerloom
 			var counter:int = 0;  // Name counter for data items
 			var indent:String = "\n             ";
 			var experimentName:String = StringUtil.trim(experiment.modelName)
-			                            + "-" + StringUtil.trim(experiment.source);
+			                            + "-" + StringUtil.trim(experiment.citeKey);
 			resetValueCounter();
 			var pl:String = "(ASSERT (AND ";
 			// TODO: Make this work with UIDs.  Do experiments currently have their own?
@@ -288,7 +288,7 @@ package edu.isi.bmkeg.utils.powerloom
 			}
 			pl += indent + "(element-name " + experiment.uid + " " + powerLoomString(experimentName) + ")";
 			pl += indent + "(experiment-source " + experiment.uid + " " 
-			                + powerLoomName(experiment.source) + " " + powerLoomString(experiment.modelName)  + ")";
+			                + powerLoomName(experiment.citeKey) + " " + powerLoomString(experiment.modelName)  + ")";
 			// pl += indent + "(" + powerLoomName(experiment.type) + " " + experimentName + ")";
 			for each (var dv:KefedObject in experiment.getMeasurements()) {
 				var variableName:String = dv.uid;
@@ -296,7 +296,7 @@ package edu.isi.bmkeg.utils.powerloom
 					var datumName:String = "$datum-" + counter++;
 					pl += indent + "(Datum " + datumName + ")";
 					var subindent:String = indent + "    ";
-					pl += subindent + "(measurement-variable-datum " + experimentName + " " + variableName + " " + datumName +")";
+					pl += subindent + "(measurement-variable-datum " + experiment.uid + " " + variableName + " " + datumName +")";
 					if (includeComments) pl += "  ; " + dv.nameValue;
 					for (var variableUid:String in datum) {
 						var variable:KefedObject = experiment.getKefedObjectFromUID(variableUid);
@@ -336,8 +336,8 @@ package edu.isi.bmkeg.utils.powerloom
 		}
 		pl += prefix + ")";		
 		pl += "\n  :AXIOMS (AND (element-name " + model.uid + " " + powerLoomString(model.modelName) + ")";
-		if (model.source != null && model.source != "") {
-			pl += "\n               (model-source " + model.uid + " " + powerLoomName(model.source) + ")";
+		if (model.citeKey != null && model.citeKey != "") {
+			pl += "\n               (model-source " + model.uid + " " + powerLoomName(model.citeKey) + ")";
 		}
 		pl += "\n               (DOCUMENTATION " + model.uid + " " + powerLoomString(model.description) + ")";
 		pl += "))\n";

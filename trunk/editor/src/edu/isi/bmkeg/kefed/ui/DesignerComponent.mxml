@@ -241,6 +241,7 @@
 				}
 			} else {
 				if (objectsGrid) objectsGrid.selectedIndex = -1;
+				currentState = "";
 			}
 		}
 
@@ -493,6 +494,10 @@
 					<mx:FormItem label="Source" direction="horizontal" width="100%">
 						<mx:TextInput id="sourceField" width="100%"
 							text="{graph.source}" valueCommit="{graph.source = sourceField.text}"/> 							<!--  -->
+					</mx:FormItem>
+					<mx:FormItem label="Citation Key" direction="horizontal" width="100%">
+						<mx:TextInput id="citationField" width="100%"
+							text="{graph.citeKey}" valueCommit="{graph.citeKey = citationField.text}"/> 							<!--  -->
 					</mx:FormItem>
 					<mx:FormItem label="Type" direction="horizontal" width="100%">
 						<mx:Text text="{graph.type}" width="100%"/> 

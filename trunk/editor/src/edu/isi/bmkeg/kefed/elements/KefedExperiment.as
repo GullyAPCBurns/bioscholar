@@ -70,6 +70,7 @@ package edu.isi.bmkeg.kefed.elements
 					this.modelName = model.modelName;
 					this.type = model.type;
 					this.source = model.source;
+					this.citeKey = model.citeKey;
 					this.uid = model.uid;
 				}
 				

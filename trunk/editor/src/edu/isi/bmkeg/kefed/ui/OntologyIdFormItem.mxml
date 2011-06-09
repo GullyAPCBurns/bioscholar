@@ -197,22 +197,21 @@
 		change="handleTermChange(event);"
 		verticalScrollPolicy="auto"/>
 		-->
-    <mx:TileList id="termGrid" width="100%" dataProvider="{myObject.ontologyIds}"
-    			 labelField="ontologyLocalName" height="30%"/>
+    <mx:TileList id="termGrid" width="100%"
+    			 dataProvider="{myObject.ontologyIds}"
+    			 valueCommit="UiUtil.adjustTileSizeToFit(termGrid);"
+    			 labelField="ontologyLocalName"
+    			 height="30%"/>
 	<mx:DataGrid id="termList" height="50%" minHeight="70" width="100%" editable="true"
 		dataProvider="{myObject.ontologyIds}"
-		itemClick="handleURL(event);"
 		verticalScrollPolicy="auto">
 		<mx:columns>
-			<mx:DataGridColumn dataField="ontology" headerText="Ontology" editable="false"/>
-			<mx:DataGridColumn dataField="ontologyLocalName" headerText="ID" editable="false"/>
-			<mx:DataGridColumn dataField="termURL" headerText="URL" editable="false">
-				<mx:itemRenderer>
-					<mx:Component>
-						<mx:Label color="0x0000CC" textDecoration="underline"/>
-					</mx:Component>
-				</mx:itemRenderer>
-			</mx:DataGridColumn>
+			<mx:DataGridColumn dataField="ontology" headerText="Ontology" editable="false"
+							dataTipField="ontology" showDataTips="true"/>
+			<mx:DataGridColumn dataField="ontologyLocalName" headerText="Name" editable="false"
+							dataTipField="ontologyLocalName" showDataTips="true"/>
+			<mx:DataGridColumn dataField="ontologyIdentifier" headerText="ID" editable="false"
+							dataTipField="ontologyIdentifier" showDataTips="true"/>
 		</mx:columns>
 	</mx:DataGrid>
 	<mx:HBox width="100%">
@@ -222,7 +221,5 @@
 			enabled="{termList.selectedIndex != -1}"/>
 		<mx:Button id="clearTermButton" label="Clear" click="clearTerms();"/>
 		<mx:Spacer width="10"/>
-		<mx:Button id="addUrlButton" label="Add URL" click="handleAddUrl();"
-			enabled="{termList.selectedIndex != -1}"/>
 	</mx:HBox>
 </mx:VBox>

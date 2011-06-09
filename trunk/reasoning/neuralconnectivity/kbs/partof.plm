@@ -41,10 +41,9 @@
 (defmodule "PART"
   :documentation "Module for a part-of relations based on Region Connection Calculus 5 (RCC5) relations.  $Revision$
 
-This implementation is an efficient encoding of the part-of relations,
-augmented by direct relationships.  Inference is limited to transitive
-relationships in the part-of hierarchy and certain disjointness
-axioms.
+This implementation is an efficient encoding of the part-of relations.
+Inference is limited to transitive relationships in the part-of hierarchy
+and certain disjointness axioms.
 
 Implements DISCRETE (DR), OVERLAPS (PO), PROPER-PART-OF (PPI)
 relations directly. For EQ the standard PowerLoom equality (=) is
@@ -58,8 +57,8 @@ existential.
 
 Examples:
  (assert (discrete (region g0) (region g1)))
- (assert (direct-part-of (region g1) (region g2)))
- (assert (direct-part-of (region g2) (region g3)))
+ (assert (proper-part-of (region g1) (region g2)))
+ (assert (proper-part-of (region g2) (region g3)))
  (assert (= (region g3) (region g3alt)))
 
  (retrieve all (proper-part-of (region ?x) (region ?y)))
@@ -107,7 +106,7 @@ For more background on the RCC5, consult
 (defrelation /part/proper-part-of ((?x /part/geometric-region) (?y /part/geometric-region))
   :documentation "PROPER-PART-OF: Proper Part Inverse.  ?x is the proper part of ?y"
 ;;  :axioms (and (antisymmetric /part/proper-part-of) (transitive /part/proper-part-of))
-  :<= (exists (?z) (and (query (/part/proper-part-of ?x ?z) :how-many :all :inference-level :subsumption)
+  :<= (exists (?z) (and (query (/part/proper-part-of ?x ?z) :how-many :all :inference-level :assertion)
 			(bound-variables ?x ?z)
 			(/part/proper-part-of ?z ?y)))
 ;;   :=>> (and (not (/part/discrete ?x ?y))
@@ -115,11 +114,11 @@ For more background on the RCC5, consult
 ;; 	    (not (= ?x ?y)))
   )
 
-(defrelation /part/direct-part-of ((?x /part/geometric-region) (?y /part/geometric-region))
-  :documentation "DIRECT-PART-OF: Direct Part Inverse.  ?x is the direct part of ?y"
-  :axioms (antisymmetric /part/direct-part-of)
-  :=> (/part/proper-part-of ?x ?y)
-  )
+;; (defrelation /part/direct-part-of ((?x /part/geometric-region) (?y /part/geometric-region))
+;;   :documentation "DIRECT-PART-OF: Direct Part Inverse.  ?x is the direct part of ?y"
+;;   :axioms (antisymmetric /part/direct-part-of)
+;;   :=> (/part/proper-part-of ?x ?y)
+;;   )
 
 #|
 ;;; TESTS

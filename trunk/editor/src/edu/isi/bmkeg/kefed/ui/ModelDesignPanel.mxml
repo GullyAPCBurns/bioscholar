@@ -132,6 +132,7 @@
 				model.type = "template";
 				model.modelName = newDesignPopup.Name.text;
 				model.source = newDesignPopup.Source.text;
+				model.citeKey = newDesignPopup.Citation.text;
 				model.description = newDesignPopup.Description.text;
 				model.updateTime();
 				modelStore.insertModel(model);

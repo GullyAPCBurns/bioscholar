@@ -84,10 +84,10 @@
     		
     		modelStore.addEventListener(ModelStoreEvent.LIST, handleListKefedTemplates);
     		modelStore.addEventListener(ModelStoreEvent.RETRIEVE, handleLoadKefedTemplate);
-    		modelStore.addEventListener(ModelStoreEvent.DELETE, handleDeleteKefedTemplate);
+     		modelStore.addEventListener(ModelStoreEvent.DELETE, handleDeleteKefedTemplate);
     		modelStore.addEventListener(ModelStoreEvent.INSERT, handleInsertKefedTemplate);
-    		modelStore.addEventListener(ModelStoreEvent.SAVE, handleSaveKefedTemplate);
-    		modelStore.addEventListener(FaultEvent.FAULT, callError);
+ 			modelStore.addEventListener(ModelStoreEvent.SAVE, handleSaveKefedTemplate);
+     		modelStore.addEventListener(FaultEvent.FAULT, callError);
 
     		dataStore.addEventListener(DataStoreEvent.LIST, handleListKefedExperimentss);
     		dataStore.addEventListener(DataStoreEvent.RETRIEVE, handleLoadKefedModel);
@@ -179,6 +179,7 @@
 				model.type = "template";
 				model.modelName = newDesignPopup.Name.text;
 				model.source = newDesignPopup.Source.text;
+				model.citeKey = newDesignPopup.Citation.text;
 				model.description = newDesignPopup.Description.text;
 				model.updateTime();
 				modelStore.insertModel(model);
@@ -355,6 +356,7 @@
 			exp.id = null;
 			exp.modelName = newExperimentPopup.Name.text;
 			exp.source = newExperimentPopup.Source.text;
+			exp.citeKey = newExperimentPopup.Citation.text;
 			exp.designUid = e.model.uid;
 //			exp.reference = newExperimentPopup.Reference.text;
 //			exp.caseId = newExperimentPopup.CaseId;
@@ -391,6 +393,7 @@
 			var i:int = experimentGrid.selectedIndex;
 			var o:Object = experimentList[i];
 			var uid:String = o.uid;
+			cursorManager.setBusyCursor();
 			dataStore.deleteData(uid);
 			PopUpManager.removePopUp(deletePopup);
 		}
@@ -400,6 +403,7 @@
 		}
 
 		private function handleDeleteKefedExperiment(e:DataStoreEvent):void {
+			cursorManager.removeBusyCursor();
 			refresh();
 		}
 
@@ -456,6 +460,7 @@
 			// So we make sure that we really have a 
 			// selected item before we actually try to get it.  - tar
 			if (i > -1) {
+				cursorManager.setBusyCursor();
 				var o:Object = experimentList[i];
 				var uid:String = o.uid;
 				dataStore.retrieveData(uid);
@@ -600,7 +605,6 @@
 	            <mx:Button id="copyExperimentButton" label="Copy Experiment" click="copyExperiment();" enabled="false"/>
 	            <mx:Button id="editExperimentButton" label="Edit Experiment" click="editExperiment();" enabled="false"/>
 	            <mx:Button id="deleteExperimentButton" label="Delete Experiment" click="deleteExperiment();" enabled="false"/>
-	            <!-- Broken: <mx:Button id="batchUploadButton" label="Batch Upload" click="batchUpload();"/> -->
 	        </mx:ControlBar>
 	
 		</mx:Panel>

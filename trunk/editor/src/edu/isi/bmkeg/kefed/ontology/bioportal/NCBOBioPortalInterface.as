@@ -125,22 +125,33 @@ package edu.isi.bmkeg.kefed.ontology.bioportal
             	}
             }
             
-            if( check != null ) {
+            if( check != null && check.page.numResultsTotal != "0" ) {
             	var returnedTermsObj:Object = check.page.contents.searchResultList.searchBean;
-	            for each (var j:Object in returnedTermsObj) {
-	     			if (allowedOntologyList == null || allowedOntologyList.contains(j.ontologyId)) {
-	    	        	searchResults.addItem(j);
-	    	        	j.url = "";
-	    	        	if( lookup[j.conceptId] != null ) {
-	    	        		j.selected = true;
+            	// We can only iterate over the returnedTermsObj if there is more than one.
+            	// Otherwise we just get the fields of the object instead.
+            	if (check.page.numResultsTotal == "1") {
+            		if (allowedOntologyList == null || allowedOntologyList.contains(returnedTermsObj.ontologyId)) {
+	    	        	searchResults.addItem(returnedTermsObj);
+	    	        	if( lookup[returnedTermsObj.conceptId] != null ) {
+	    	        		returnedTermsObj.selected = true;
 	    	        	} else {
-	    	        		j.selected = false;
+	    	        		returnedTermsObj.selected = false;
 	    	        	}
-	    	   		}
+	    	        }
+            	} else {
+ 	           		for each (var j:Object in returnedTermsObj) {
+	     				if (allowedOntologyList == null || allowedOntologyList.contains(j.ontologyId)) {
+	    	        		searchResults.addItem(j);
+	    	        		if( lookup[j.conceptId] != null ) {
+	    	        			j.selected = true;
+	    	        		} else {
+	    	        			j.selected = false;
+	    	        		}
+	    	   			}
+ 	           		}
         	    }
-            	
-            }        
-
+            }
+ 
 			var outputEvent:OntologySearchEvent = 
 					new OntologySearchEvent(OntologySearchEvent.FIND_ONTOLOGY_TERMS, searchResults);
 			dispatchEvent(outputEvent);

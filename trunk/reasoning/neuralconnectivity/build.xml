@@ -8,8 +8,6 @@
     clean       - remove all compiled files, war file and generated documentation
   -->
 <project name="NeuralConnectivity Reasoning" basedir="." default="dist">
-    <taskdef resource="net/sf/antcontrib/antlib.xml"
-	     classpath="${basedir}/ant/lib/ant-contrib.jar"/>
     <property environment="host"/>
     <property name="CREATOR" value="University of Southern California"/>
     <property name="SRC_DIR" location="src"/>

@@ -163,6 +163,7 @@ package edu.isi.bmkeg.kefed.store.json {
 			clone.dateTime = model.dateTime;
 			clone.type = model.type;
 			clone.source = model.source;
+			clone.citeKey = model.citeKey;
 		
 			clone.nodes = new Array(model.bNodes.length);
 			for(var i:int=0; i<model.bNodes.length; i++) {
@@ -425,6 +426,7 @@ package edu.isi.bmkeg.kefed.store.json {
 				model.description = o.description;
 				model.dateTime = o.dateTime;
 				model.source = o.source;
+				model.citeKey = o.citeKey;
 				model.type = o.type;
 				model.uid = o.uid;
 				

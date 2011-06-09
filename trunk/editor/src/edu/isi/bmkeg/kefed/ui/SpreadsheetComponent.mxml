@@ -201,6 +201,7 @@
 			model.diagramXML = diagramXml;
 			model.modelName = modelName.text;
 			model.source = modelSource.text;
+			model.citeKey = modelCitation.text;
 			if( Application.application.eventDispatcher != null ) {
 				Application.application.eventDispatcher.
 						dispatchBioScholarEvent(KefedAppEvent.SAVE_DATA_EDIT, model);
@@ -860,15 +861,19 @@
 			<mx:HBox width="100%">
 				<!-- <mx:Label text="Design:" fontSize="12"/> -->
 				<mx:Label text="{model.type}" fontSize="18" />
+				<mx:Spacer width="12"/>
+				<mx:Label text="Name:" fontSize="12"/>
+				<mx:TextInput id="modelName" text="{model.modelName}" fontSize="12" 
+							  valueCommit="{model.modelName = modelName.text}"/>
 				<mx:Spacer width="100%"/>
 			</mx:HBox>
 			<mx:HBox  height="40" width="100%">
 				<mx:Label text="Source:" fontSize="12"/>
 				<mx:TextInput id="modelSource" text="{model.source}" fontSize="12"
 							  valueCommit="{model.source = modelSource.text}"/>
-				<mx:Label text="Name:" fontSize="12"/>
-				<mx:TextInput id="modelName" text="{model.modelName}" fontSize="12" 
-							  valueCommit="{model.modelName = modelName.text}"/>
+				<mx:Label text="Citation Key:" fontSize="12"/>
+				<mx:TextInput id="modelCitation" text="{model.citeKey}" fontSize="12"
+							  valueCommit="{model.citeKey = modelCitation.text}"/>
 				<mx:Spacer width="100%"/>
 				<!-- <mx:Button label="Show PowerLoom" click="showModelPowerLoom(event)"/> -->
 				<mx:Button label="Save Data" click="saveCurrentModel(event)" enabled="{saveAllowed}"/>

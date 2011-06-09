@@ -343,42 +343,45 @@
 		</mx:State>
 	</mx:states>
 	
-	<mx:VBox id="content" width="100%" height="100%">
-		<mx:AdvancedDataGrid id="connectionMatrix" width="100%" height="70%" 
-			 selectionMode="singleCell"
-			 doubleClickEnabled="true" itemDoubleClick="connectionDoubleClickHandler(event)"
-			 initialize="processMatrixData(matrixData);"/>
-		<mx:Label id="legend" fontSize="{LEGEND_SIZE}"
-			text="Connection strength: 0 = none; + = weak; ++ = moderate; +++ = strong; * = unknown strength     Double-click to see evidence for connection."/>
-	    <mx:Spacer height="5"/>
-		<mx:HBox>
-			<mx:Label id="connectionDescription" color="black" text=""/>
-			<mx:Label id="evidenceCount" color="black" text=""/>
-			<mx:Label id="evidenceTime" color="gray" text=""/>
-		</mx:HBox>
-		<mx:DataGrid id="evidenceFile" width="100%" height="20%" 
-			dataProvider="{evidenceCollection}"
-			change="handleEvidenceChange(event)"
-			doubleClickEnabled="true" itemDoubleClick="evidenceDoubleClickHandler(event)">
-			<mx:columns>
-				<mx:DataGridColumn headerText="Citation" dataField="Citation" width="200"/>
-				<mx:DataGridColumn headerText="PubMedID" dataField="pmid" width="70" textAlign="right"/>
-				<mx:DataGridColumn headerText="Chemical" dataField="Chemical" width="200"/>
-				<mx:DataGridColumn headerText="Label Type" dataField="LabelType" width="70"/>
-				<mx:DataGridColumn headerText="Label Density" dataField="LabelDensity" width="100"/>
-				<mx:DataGridColumn headerText="Injection Location" dataField="Injection" width="150"/>
-				<mx:DataGridColumn headerText="Label Location" dataField="LabelLocation" width="150"/>
-				<mx:DataGridColumn headerText="Exp. Source" dataField="ExpSource"/>
-				<mx:DataGridColumn headerText="Exp. Label" dataField="ExpLabel"/>
-			</mx:columns>
-		</mx:DataGrid>
-		<mx:HBox id="pubid">
-			<mx:Label text="PubMed ID:"/>
-			<mx:Label id="pmidLabel"/>
-			<mx:Spacer width="15"/>
-			<mx:Label text="Library ID:"/>
-			<mx:Label id="libraryID"/>
-		</mx:HBox>
-		<mx:Label fontSize="{LEGEND_SIZE}" text="Double click to show PubMed page for papers with PubMedID"/>
-	</mx:VBox>
+	<mx:VDividedBox id="content" width="100%" height="100%">
+		<mx:VBox id="matrixBox" height="70%">
+			<mx:AdvancedDataGrid id="connectionMatrix" width="100%" height="100%" 
+				 selectionMode="singleCell"
+				 doubleClickEnabled="true" itemDoubleClick="connectionDoubleClickHandler(event)"
+				 initialize="processMatrixData(matrixData);"/>
+			<mx:Label id="legend" fontSize="{LEGEND_SIZE}"
+				text="Connection strength: 0 = none; + = weak; ++ = moderate; +++ = strong; * = unknown strength     Double-click to see evidence for connection."/>
+		</mx:VBox>
+	    <mx:VBox id="evidenceBox" height="30%">
+			<mx:HBox>
+				<mx:Label id="connectionDescription" color="black" text=""/>
+				<mx:Label id="evidenceCount" color="black" text=""/>
+				<mx:Label id="evidenceTime" color="gray" text=""/>
+			</mx:HBox>
+			<mx:DataGrid id="evidenceFile" width="100%" height="100%" 
+				dataProvider="{evidenceCollection}"
+				change="handleEvidenceChange(event)"
+				doubleClickEnabled="true" itemDoubleClick="evidenceDoubleClickHandler(event)">
+				<mx:columns>
+					<mx:DataGridColumn headerText="Citation" dataField="Citation" width="200"/>
+					<mx:DataGridColumn headerText="PubMedID" dataField="pmid" width="70" textAlign="right"/>
+					<mx:DataGridColumn headerText="Chemical" dataField="Chemical" width="200"/>
+					<mx:DataGridColumn headerText="Label Type" dataField="LabelType" width="70"/>
+					<mx:DataGridColumn headerText="Label Density" dataField="LabelDensity" width="100"/>
+					<mx:DataGridColumn headerText="Injection Location" dataField="Injection" width="150"/>
+					<mx:DataGridColumn headerText="Label Location" dataField="LabelLocation" width="150"/>
+					<mx:DataGridColumn headerText="Exp. Source" dataField="ExpSource"/>
+					<mx:DataGridColumn headerText="Exp. Label" dataField="ExpLabel"/>
+				</mx:columns>
+			</mx:DataGrid>
+			<mx:HBox id="pubid">
+				<mx:Label text="PubMed ID:"/>
+				<mx:Label id="pmidLabel"/>
+				<mx:Spacer width="15"/>
+				<mx:Label text="Library ID:"/>
+				<mx:Label id="libraryID"/>
+			</mx:HBox>
+			<mx:Label fontSize="{LEGEND_SIZE}" text="Double click to show PubMed page for papers with PubMedID"/>
+		</mx:VBox>
+	</mx:VDividedBox>
 </mx:Panel>

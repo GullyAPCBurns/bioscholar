@@ -43,6 +43,8 @@
     -->
 
   <!-- Define a Security Constraint on this Application -->
+  <!-- For security, uncomment the next three items: security-constraint, login-config and security-role -->
+  <!--
   <security-constraint id="edit">
     <web-resource-collection>
       <web-resource-name>Blazeds</web-resource-name>
@@ -52,19 +54,24 @@
        <role-name>kefed</role-name>
     </auth-constraint>
   </security-constraint>
+  -->
 
   <!-- Define the Login Configuration for this Application -->
+  <!--
   <login-config>
     <auth-method>BASIC</auth-method>
     <realm-name>Kefed Editor</realm-name>
   </login-config>
+  -->
 
   <!-- Security roles referenced by this web application -->
+  <!--
   <security-role>
     <description>
       The role that is required to log in to the Kefed Applications
     </description>
     <role-name>kefed</role-name>
   </security-role>
+  -->
 
 </web-app>

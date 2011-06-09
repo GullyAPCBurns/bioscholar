@@ -25,6 +25,7 @@
 			public function setFieldsForType(model:Object):void {
 				Name.text = model.modelName;
 				Source.text = model.source;
+				Citation.text = model.citeKey;
 			}
 		]]>
 	</mx:Script>
@@ -37,12 +38,15 @@
 					change="setFieldsForType(Type.selectedItem);" 
 					dataProvider="{templateList}"/>				
 			</mx:FormItem>
+			<mx:FormItem label="Experiment Label">
+				<mx:TextInput id="Name"/>				
+			</mx:FormItem>		
 			<mx:FormItem label="Source">
 				<mx:TextInput id="Source"/>				
 			</mx:FormItem>
-			<mx:FormItem label="Experiment Label">
-				<mx:TextInput id="Name"/>				
-			</mx:FormItem>			
+			<mx:FormItem label="Citation Key">
+				<mx:TextInput id="Citation"/>				
+			</mx:FormItem>	
 			<!--
 			<mx:FormItem label="Reference">
 				<mx:TextInput id="Reference"/>

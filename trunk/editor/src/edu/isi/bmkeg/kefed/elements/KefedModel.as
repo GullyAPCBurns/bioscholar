@@ -46,6 +46,9 @@ package edu.isi.bmkeg.kefed.elements
 
 		[Bindable]
 		public var source:String;
+		
+		[Bindable]
+		public var citeKey:String;
 				
 		[Bindable]
 		public var modelName:String;
@@ -142,6 +145,7 @@ package edu.isi.bmkeg.kefed.elements
 			clone.diagramXML = diagramXML;
 			clone.type = type;
 			clone.source = source;
+			clone.citeKey = citeKey;
 			clone.modelName = modelName;
 			clone.description = description;
 			
