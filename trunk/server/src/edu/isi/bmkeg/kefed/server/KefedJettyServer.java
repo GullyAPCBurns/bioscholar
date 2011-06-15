@@ -43,7 +43,8 @@ import org.eclipse.jetty.webapp.WebAppContext;
 public class KefedJettyServer implements LifeCycle.Listener {
 
   /** PATH TO APPLICATION */
-  private static final String URL_PATH = "/blazeds/bioscholar/NeuralConnectivity.html";
+  private static final String NEURO_URL_PATH = "/blazeds/bioscholar/NeuralConnectivity.html";
+  private static final String BIOSCHOLAR_URL_PATH = "/blazeds/bioscholar/BioScholar.html";
   /** Default port to use for initial suggestion */
   private static final int DEFAULT_PORT = 50000;
   /** Minimum and Maximum user settable port values */
@@ -54,28 +55,34 @@ public class KefedJettyServer implements LifeCycle.Listener {
   private int port = DEFAULT_PORT;
   /** Use this to see if the current port has changed. */
   private int currentServerPort = DEFAULT_PORT;
+  private File workingDirectory = new File(System.getProperty("user.home"), "BioScholarServer");
 
   private Server server = null;
   private String jettyHome;
   private JFrame f;
   private JLabel status;
   private JFormattedTextField portValue;
-  private JButton urlButton;
+  private JButton folderButton;
+  private JButton urlButton1;
+  private JButton urlButton2 = null;
   private JButton startButton;
   private JButton stopButton;
   private JButton quitButton;
 
   private String name = "Jetty Server";
-  private String urlpath = "/";
+  private String urlpath1 = "/";
+  private String urlpath2 = "/";
 
   /** Create a new KefedJettyServer to run web applications
    *
    * @param name The name for this application.  Used as title.
-   * @param urlpath The path to the URL to launch for the application
+   * @param urlpath The path to the first URL to launch for the application
+   * @param urlpath The path to the second URL to launch for the application (may be null)
    */
-  public KefedJettyServer (String name, String urlpath) {
+  public KefedJettyServer (String name, String urlpath1, String urlpath2) {
     this.name = name;
-    this.urlpath = urlpath;
+    this.urlpath1 = urlpath1;
+    this.urlpath2 = urlpath2;
     jettyHome = System.getProperty("jetty.home",".");
     SwingUtilities.invokeLater(new Runnable () {
     	public void run () {
@@ -115,34 +122,48 @@ public class KefedJettyServer implements LifeCycle.Listener {
     portValue.setToolTipText("Should be between " + MIN_PORT_VALUE + " and " + MAX_PORT_VALUE);
 
     status = new JLabel("Stopped");
-    urlButton = new JButton(buildUrl(port, urlpath));
-    urlButton.setEnabled(false);
-    urlButton.addActionListener(new ActionListener() {
-    	public void actionPerformed(ActionEvent e) {
-    		try {
-    			java.awt.Desktop.getDesktop().browse(java.net.URI.create(urlButton.getText()));
-				} catch (Exception e1) {
-					reportError(e1);
-				}
-    	}
-    });
 
+    ActionListener urlListener = new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+	  try {
+	    java.awt.Desktop.getDesktop().browse(java.net.URI.create(((JButton)(e.getSource())).getText()));
+	  } catch (Exception e1) {
+	    reportError(e1);
+	  }
+    	}
+      };
+    urlButton1 = new JButton(buildUrl(port, urlpath1));
+    urlButton1.setEnabled(false);
+    urlButton1.addActionListener(urlListener);
+    if (urlpath2 != null) {
+      urlButton2 = new JButton(buildUrl(port, urlpath2));
+      urlButton2.setEnabled(false);
+      urlButton2.addActionListener(urlListener);
+    }
 
 
     startButton = new JButton("Start Server");
     startButton.setEnabled(true);
     startButton.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent e) {
-    			if (isValidPort(portValue)) {
-    				port = ((Integer) portValue.getValue()).intValue();
-    				urlButton.setText(buildUrl(port, urlpath));
-    				start(port);
-    	 			startButton.setEnabled(false);
-      			portValue.setEditable(false);
-    			} else {
-    				JOptionPane.showMessageDialog(f, "Port value must be a number, usually between "
-    				                                 + MIN_PORT_VALUE + " and " + MAX_PORT_VALUE,
-    				                                 "Error", JOptionPane.ERROR_MESSAGE);
+	  if (!workingDirectory.exists()) {
+	    JOptionPane.showMessageDialog(f, "The directory \"" + workingDirectory.getPath()
+					  + "\" will be created to hold server files and store information.",
+					  "Notice", JOptionPane.INFORMATION_MESSAGE);
+	    workingDirectory.mkdirs();
+	    new File(workingDirectory,"work").mkdir();
+	  }
+	  if (isValidPort(portValue)) {
+	    port = ((Integer) portValue.getValue()).intValue();
+	    urlButton1.setText(buildUrl(port, urlpath1));
+	    if (urlButton2 != null) urlButton2.setText(buildUrl(port, urlpath2));
+	    start(port);
+	    startButton.setEnabled(false);
+	    portValue.setEditable(false);
+	  } else {
+	    JOptionPane.showMessageDialog(f, "Port value must be a number, usually between "
+					  + MIN_PORT_VALUE + " and " + MAX_PORT_VALUE,
+					  "Error", JOptionPane.ERROR_MESSAGE);
 
     			}
     	}
@@ -152,19 +173,20 @@ public class KefedJettyServer implements LifeCycle.Listener {
     stopButton.setEnabled(false);
     stopButton.addActionListener(new ActionListener() {
     	public void actionPerformed(ActionEvent e) {
-    		new Thread () {
-    			@Override
-					public void run () {
-    				try {
-    					server.stop();
-    				} catch (Exception e1) {
-    					reportError(e1);
-    				}
-    			}
-    		}.start();
-  			stopButton.setEnabled(false);
-  			urlButton.setEnabled(false);
-  			portValue.setEditable(true);
+	  new Thread () {
+	    @Override
+	      public void run () {
+	      try {
+		server.stop();
+	      } catch (Exception e1) {
+		reportError(e1);
+	      }
+	    }
+	  }.start();
+	  stopButton.setEnabled(false);
+	  urlButton1.setEnabled(false);
+	  if (urlButton2 != null) urlButton2.setEnabled(false);
+	  portValue.setEditable(true);
     	}
     });
 
@@ -184,12 +206,19 @@ public class KefedJettyServer implements LifeCycle.Listener {
     });
 
     builder.append("Port:", portValue);
+    // builder.append("Working Folder:", folderButton);
     builder.appendParagraphGapRow();
     builder.append("Status:", status);
-    builder.append("URL:", urlButton);
+    if (urlButton2 == null) {
+      builder.append("App:", urlButton1);
+    } else {
+      builder.append("App 1:", urlButton1);
+      builder.append("App 2:", urlButton2);
+    }
 
     bbuilder.addButton(startButton);
-    bbuilder.addButton(stopButton);
+    // This doesn't properly shutdown the persevere war, so disable it.
+    // bbuilder.addButton(stopButton);
     bbuilder.addUnrelatedGap();
     bbuilder.addGlue();
     bbuilder.addButton(quitButton);
@@ -205,78 +234,82 @@ public class KefedJettyServer implements LifeCycle.Listener {
   }
 
   public void start (int onPort) {
-		if (server == null || currentServerPort != onPort) {
-			server = new Server(onPort);
-			server.addLifeCycleListener(this);
-			currentServerPort = onPort;
-			status.setText("Creating Server...");
-			new Thread() {
-				@Override
-				public void run () {
-				  try {
-					// Set this up so we can find the crossdomain.xml file
-					// that we need in order to have the WebApps interoperate.
-					WebAppContext root = new WebAppContext();
-					root.setContextPath("/");
-					root.setResourceBase(jettyHome + "/webapps/root");
+    if (server == null || currentServerPort != onPort) {
+      server = new Server(onPort);
+      server.addLifeCycleListener(this);
+      currentServerPort = onPort;
+      status.setText("Creating Server...");
+      new Thread() {
+	@Override
+	  public void run () {
+	  try {
+	    Collection<Handler> handlers = new ArrayList<Handler>();
+	    // Set this up so we can find the crossdomain.xml file
+	    // that we need in order to have the WebApps interoperate.
+	    WebAppContext root = new WebAppContext();
+	    root.setContextPath("/");
+	    root.setResourceBase(jettyHome + "/webapps/root");
+	    handlers.add(root);
 
-					// Setup all items in the webapps directory which
-					// have war files to be part of the server.
-					Collection<Handler> handlers = new ArrayList<Handler>();
-					File webappDirectory = new File(jettyHome + "/webapps");
-					assert webappDirectory.isDirectory() : webappDirectory.getCanonicalPath();
-					FilenameFilter warFilter = new FilenameFilter() {
-					    public boolean accept(File dir, String name) {
-					      return name.endsWith(".war");
-					    }
-					  };
-
-					for (File warFile: webappDirectory.listFiles(warFilter)) {
-					  String filename = warFile.getName();
-					  int dotPosition = filename.lastIndexOf('.');
-					  WebAppContext c = new WebAppContext();
-					  c.setContextPath("/" + filename.substring(0,dotPosition));
-					  c.setWar(warFile.getCanonicalPath());
-					  handlers.add(c);
-					}
-
-					ContextHandlerCollection contexts = new ContextHandlerCollection();
-					contexts.setHandlers(handlers.toArray(new Handler[0]));
-					server.setHandler(contexts);
-
-					server.start();
-				  } catch (Exception e) {
-						reportError(e);
-						e.printStackTrace();
-				  }
-				}
-			}.start();
-		} else { // The existing server has the correct port, so we just start it.
-			new Thread() {
-				@Override
-				public void run () {
-					try {
-						server.start();
-					} catch (Exception e) {
-						reportError(e);
-						e.printStackTrace();
-					}
-				}
-			}.start();
+	    // Setup all items in the webapps directory which
+	    // have war files to be part of the server.
+	    File webappDirectory = new File(jettyHome + "/webapps");
+	    assert webappDirectory.isDirectory() : webappDirectory.getCanonicalPath();
+	    File tempDirectory = new File(workingDirectory, "work");
+	    assert tempDirectory.isDirectory() : tempDirectory.getCanonicalPath();
+	    FilenameFilter warFilter = new FilenameFilter() {
+		public boolean accept(File dir, String name) {
+		  return name.endsWith(".war");
 		}
+	      };
+
+	    for (File warFile: webappDirectory.listFiles(warFilter)) {
+	      String filename = warFile.getName();
+	      int dotPosition = filename.lastIndexOf('.');
+	      WebAppContext c = new WebAppContext();
+	      c.setContextPath("/" + filename.substring(0,dotPosition));
+	      c.setWar(warFile.getCanonicalPath());
+	      c.setTempDirectory(new File(tempDirectory, filename));
+	      handlers.add(c);
+	    }
+
+	    ContextHandlerCollection contexts = new ContextHandlerCollection();
+	    contexts.setHandlers(handlers.toArray(new Handler[0]));
+	    server.setHandler(contexts);
+
+	    server.start();
+	  } catch (Exception e) {
+	    reportError(e);
+	    e.printStackTrace();
+	  }
+	}
+      }.start();
+    } else { // The existing server has the correct port, so we just start it.
+      new Thread() {
+	@Override
+	  public void run () {
+	  try {
+	    server.start();
+	  } catch (Exception e) {
+	    reportError(e);
+	    e.printStackTrace();
+	  }
+	}
+      }.start();
+    }
   }
 
-	/** General error reporting pop-up.
-	 * @param error The Throwable that we are reporting.
-	 */
-	private void reportError (final Throwable error) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run () {
-				JOptionPane.showMessageDialog(f, error.getMessage(), "Error",
-																			JOptionPane.ERROR_MESSAGE);
-			}
-		});
+  /** General error reporting pop-up.
+   * @param error The Throwable that we are reporting.
+   */
+  private void reportError (final Throwable error) {
+    SwingUtilities.invokeLater(new Runnable() {
+	public void run () {
+	  JOptionPane.showMessageDialog(f, error.getMessage(), "Error",
+					JOptionPane.ERROR_MESSAGE);
 	}
+      });
+  }
 
 
 	/* (non-Javadoc)
@@ -288,59 +321,60 @@ public class KefedJettyServer implements LifeCycle.Listener {
 	}
 
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.jetty.util.component.LifeCycle.Listener#lifeCycleStarted(org.eclipse.jetty.util.component.LifeCycle)
-	 */
-	@Override
-	public void lifeCycleStarted (LifeCycle lc) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run () {
-				status.setText("Running");
-				quitButton.setText("Stop and Quit");
-				stopButton.setEnabled(true);
-				urlButton.setEnabled(true);
-			}
-		});
+  /* (non-Javadoc)
+   * @see org.eclipse.jetty.util.component.LifeCycle.Listener#lifeCycleStarted(org.eclipse.jetty.util.component.LifeCycle)
+   */
+  @Override
+    public void lifeCycleStarted (LifeCycle lc) {
+    SwingUtilities.invokeLater(new Runnable() {
+	public void run () {
+	  status.setText("Running");
+	  quitButton.setText("Stop and Quit");
+	  stopButton.setEnabled(true);
+	  urlButton1.setEnabled(true);
+	  if (urlButton2 != null) urlButton2.setEnabled(true);
 	}
+      });
+  }
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.jetty.util.component.LifeCycle.Listener#lifeCycleStarting(org.eclipse.jetty.util.component.LifeCycle)
-	 */
-	@Override
-	public void lifeCycleStarting (LifeCycle lc) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run () {
-				status.setText("Starting...");
-			}
-		});
+  /* (non-Javadoc)
+   * @see org.eclipse.jetty.util.component.LifeCycle.Listener#lifeCycleStarting(org.eclipse.jetty.util.component.LifeCycle)
+   */
+  @Override
+    public void lifeCycleStarting (LifeCycle lc) {
+    SwingUtilities.invokeLater(new Runnable() {
+	public void run () {
+	  status.setText("Starting...");
 	}
+      });
+  }
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.jetty.util.component.LifeCycle.Listener#lifeCycleStopped(org.eclipse.jetty.util.component.LifeCycle)
-	 */
-	@Override
-	public void lifeCycleStopped (LifeCycle lc) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run () {
-				status.setText("Stopped");
-				quitButton.setText("Quit");
-				startButton.setEnabled(true);
-				portValue.setEditable(true);
-			}
-		});
+  /* (non-Javadoc)
+   * @see org.eclipse.jetty.util.component.LifeCycle.Listener#lifeCycleStopped(org.eclipse.jetty.util.component.LifeCycle)
+   */
+  @Override
+    public void lifeCycleStopped (LifeCycle lc) {
+    SwingUtilities.invokeLater(new Runnable() {
+	public void run () {
+	  status.setText("Stopped");
+	  quitButton.setText("Quit");
+	  startButton.setEnabled(true);
+	  portValue.setEditable(true);
 	}
+      });
+  }
 
-	/* (non-Javadoc)
-	 * @see org.eclipse.jetty.util.component.LifeCycle.Listener#lifeCycleStopping(org.eclipse.jetty.util.component.LifeCycle)
-	 */
-	@Override
-	public void lifeCycleStopping (LifeCycle lc) {
-		SwingUtilities.invokeLater(new Runnable() {
-			public void run () {
-				status.setText("Stopping...");
-			}
-		});
+  /* (non-Javadoc)
+   * @see org.eclipse.jetty.util.component.LifeCycle.Listener#lifeCycleStopping(org.eclipse.jetty.util.component.LifeCycle)
+   */
+  @Override
+    public void lifeCycleStopping (LifeCycle lc) {
+    SwingUtilities.invokeLater(new Runnable() {
+	public void run () {
+	  status.setText("Stopping...");
 	}
+      });
+  }
 
 
   /**
@@ -351,6 +385,6 @@ public class KefedJettyServer implements LifeCycle.Listener {
    * @exception Exception if an error occurs
    */
   public static void main(String[] args) throws Exception {
-    new KefedJettyServer("BioScholar Jetty Server", URL_PATH);
+    new KefedJettyServer("BioScholar Jetty Server", NEURO_URL_PATH, BIOSCHOLAR_URL_PATH);
   }
 }

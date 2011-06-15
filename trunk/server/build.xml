@@ -21,7 +21,7 @@
     <property name="LAUNCH4J_HOME" value="${host.LAUNCH4J_HOME}"/>
     <property name="APP" value="BioScholarServer"/>
     <property name="SHORT_NAME" value="BioScholar"/>
-    <property name="VERSION" value="1.0.2"/>
+    <property name="VERSION" value="1.0.3"/>
 
     <taskdef resource="net/sf/antcontrib/antlib.xml"
 	     classpath="${basedir}/ant/lib/ant-contrib.jar"/>
@@ -112,7 +112,8 @@
 		  shortname="${SHORT_NAME}"
 		  stubfile="${LIB_DIR}/JavaApplicationStub"
 		  icon="${basedir}/icons/application.icns"
-		  vmoptions="-Xmx${MAX_HEAP}m">
+		  vmoptions="-Xmx${MAX_HEAP}m"
+		  version="${VERSION}">
 	<javaproperty name="apple.awt.showGrowBox" value="true"/>
 	<javaproperty name="apple.laf.useScreenMenuBar" value="true"/>
 	<jarfilelist dir="${BUILD_DIR}" files="${APP_JAR_NAME}.jar"/>
@@ -356,7 +357,8 @@ java -Xmx${MAX_HEAP}m -jar ${APP_JAR_NAME}.jar
 		  shortname="Installer"
 		  stubfile="${LIB_DIR}/JavaApplicationStub"
 		  icon="${basedir}/ant/icons/izpack.icns"
-		  vmoptions="-Xmx${INSTALLER_HEAP}m">
+		  vmoptions="-Xmx${INSTALLER_HEAP}m"
+		  version="${VERSION}">
 	<javaproperty name="apple.awt.showGrowBox" value="true"/>
 	<javaproperty name="apple.laf.useScreenMenuBar" value="true"/>
 	<javaproperty name="file.encoding" value="UTF-8"/>
