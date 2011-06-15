@@ -10,6 +10,8 @@ Installation instructions for each option are given below.
 
 == Stand-alone Web Server ==
 
+*Temporarily unavailable to fix problem!*
+
 This is the simplest installation.  We provide installers for MacOS, Windows and Linux and generic Unix systems.  Download the appropriate installer.
 
 === Installer Download ===
