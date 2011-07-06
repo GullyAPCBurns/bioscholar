@@ -21,7 +21,7 @@
     <property name="LAUNCH4J_HOME" value="${host.LAUNCH4J_HOME}"/>
     <property name="APP" value="BioScholarServer"/>
     <property name="SHORT_NAME" value="BioScholar"/>
-    <property name="VERSION" value="1.0.3"/>
+    <property name="VERSION" value="1.0.4"/>
 
     <taskdef resource="net/sf/antcontrib/antlib.xml"
 	     classpath="${basedir}/ant/lib/ant-contrib.jar"/>

@@ -26,10 +26,10 @@ package edu.isi.bmkeg.kefed.ontology.bioportal
 	
 	public class NCBOBioPortalInterface extends OntologySearchInterface {
 	
-		/** Email account for the NCBO restful web services call.
+		/** API key for NCBO restful web services calls
 		 */
 		[Bindable]
-		public var emailAccount:String = "gully@usc.edu";
+		public var apikey:String = "af39dd48-ba3e-43a0-bf72-461030d945d8";
 
 		private var baseUrl:String;
 		private var ncboSearchService:HTTPService;
@@ -82,7 +82,7 @@ package edu.isi.bmkeg.kefed.ontology.bioportal
 		 			+ encodeURIComponent(term)
 		 			+ "?isexactmatch=" + exactStr 
 		 			+ "&includeproperties=" + propStr 
-		 			+ "&email=" + emailAccount; 	 	
+		 			+ "&apikey=" + apikey; 	 	
 		 	CursorManager.setBusyCursor();
 			ncboSearchService.send();
 			
@@ -175,7 +175,7 @@ package edu.isi.bmkeg.kefed.ontology.bioportal
 			ncboListOntologiesService.contentType = "application/javascript";
 			ncboListOntologiesService.method = "GET";
 		 	ncboListOntologiesService.url = "http://rest.bioontology.org/bioportal/" + 
-		 			"ontologies?email=gully@usc.edu"; 	 	
+		 			"ontologies?apikey=" + apikey; 	 	
 			
 			ncboListOntologiesService.addEventListener(ResultEvent.RESULT, 
 					ncboListOntologiesEventHandler);
