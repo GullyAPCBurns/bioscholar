@@ -7,7 +7,7 @@ The goal of the !BioScholar project is to provide software for experimental biom
 
 == The Software ==
 
-A more general overview of !BioScholar can be found at the home page [http://www.bioischolar.org].  This site is directed at software distribution and installation issues.  Here you can find
+A more general overview of !BioScholar can be found at the home page [http://www.bioscholar.org].  This site is directed at software distribution and installation issues.  Here you can find
 
   * A brief DesignOverview
   * InstallationInstructions
